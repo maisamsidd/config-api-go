@@ -1,0 +1,11 @@
+{
+  "production": {
+    "DATABASE_URL": "postgres://user:pass@host:5432/db",
+    "NEXTAUTH_SECRET": "superdeccret123",
+    "NEXT_PUBLIC_API_URL": "https://api.example.com",
+    "TEST_ENV": "maisam"
+  },
+  "staging": {
+    "NEXT_PUBLIC_API_URL": "https://staging-api.example.com"
+  }
+}
