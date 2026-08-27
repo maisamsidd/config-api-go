@@ -120,7 +120,7 @@ func main() {
 	}
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8050"
+		port = "8060"
 	}
 
 	store := NewMetadataStore(dataFile)
