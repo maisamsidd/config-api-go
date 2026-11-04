@@ -28,6 +28,21 @@ func NewMetadataStore(file string) *MetadataStore {
 	return s
 }
 
+func (s *MetadataStore) GetAll() map[string]map[string]string {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	// Return a copy to avoid race conditions if caller modifies it.
+	copy := make(map[string]map[string]string, len(s.data))
+	for k, v := range s.data {
+		innerCopy := make(map[string]string, len(v))
+		for ik, iv := range v {
+			innerCopy[ik] = iv
+		}
+		copy[k] = innerCopy
+	}
+	return copy
+}
+
 // load reads the persisted JSON file (if any) into memory at startup.
 func (s *MetadataStore) load() {
 	if _, err := os.Stat(s.file); os.IsNotExist(err) {
